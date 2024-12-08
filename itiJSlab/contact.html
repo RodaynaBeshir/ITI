@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body>
+    <p> <a href="index.html">home</a></p>
+    <p> <a href="temperature.html">temperature</a></p>
+    <p> <a href="contact.html">contact</a></p>
+    <p> <a href="headers.html">headers</a></p>
+
+    <h1>your contact</h1>
+    <div id="userDetails"></div> 
+
+    <script>
+        
+        function getUserDetails() {
+            let name;
+            let birthYear;
+            let age;
+            
+            while (true) {
+                name = prompt(" enter your name:");
+                if (name && /^[A-Za-z]+$/.test(name)) { 
+                    break;  
+                } else {
+                    alert("enter a valid name");
+                }
+            }
+            while (true) {
+                birthYear = prompt(" enter your birth year:");
+                birthYear = parseInt(birthYear);
+                if (!isNaN(birthYear) && birthYear < 2010 && birthYear > 1900) {
+                    break;  
+                } else {
+                    alert("enter a valid birth year (less than 2010 are not allowed).");
+                }
+            }
+
+            // Calculate age
+            let currentYear = new Date().getFullYear();
+            age = currentYear - birthYear;
+
+            // Display details
+            document.getElementById("userDetails").innerHTML = `
+                <p>Name: ${name}</p>
+                <p>Birth year: ${birthYear}</p>
+                <p>Age: ${age}</p>
+            `;
+        }
+        window.onload = getUserDetails;
+    </script>
+</body>
+</html>

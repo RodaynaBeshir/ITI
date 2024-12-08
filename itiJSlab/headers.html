@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+
+    <p> <a href="index.html">home</a></p>
+    <p> <a href="temperature.html">temperature</a></p>
+    <p> <a href="contact.html">contact</a></p>
+    <p> <a href="headers.html">headers</a></p>
+
+    <script>
+        function writeWelcome() {
+            let output = "";
+            for (let i = 1; i <= 6; i++) {
+                output += `<h${i}>Welcome to my page</h${i}>`; }
+                document.body.innerHTML += output;
+            
+        }
+        window.onload = writeWelcome; 
+
+
+        
+    </script>
+    
+</body>
+</html>
