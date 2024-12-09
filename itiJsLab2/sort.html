@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .label {
+            color: red;
+            font-weight: bold;}
+        .values {
+            color: black; }
+    </style>
+</head>
+<body>
+    <p><a href="userinfo.html">userInfo</a></p>
+    <p><a href="longestWord.html">longest word</a></p>
+    <p><a href="sort.html">Sorting</a></p>
+    <p><a href="math.html">Calculator</a></p>
+
+    <h1>Sorting</h1>
+    <h3>Results:</h3>
+    <p><span class="label">Entered values:</span> <span class="values" id="enteredValues"></span></p>
+    <p><span class="label">Descending order:</span> <span class="values" id="descendingValues"></span></p>
+    <p><span class="label">Ascending order:</span> <span class="values" id="ascendingValues"></span></p>
+
+    <script>
+        // Example 
+        const numbers = [233,14.5,89,70,1];
+
+        const descending = numbers.slice().sort((a, b) => b - a); 
+        const ascending = numbers.slice().sort((a, b) => a - b); 
+
+        document.getElementById("enteredValues").textContent = numbers.join(", ");
+        document.getElementById("descendingValues").textContent = descending.join(", ");
+        document.getElementById("ascendingValues").textContent = ascending.join(", ");
+    </script>
+</body>
+</html>

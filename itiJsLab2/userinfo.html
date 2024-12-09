@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .data {
+            color: black;
+        }
+    </style>
+</head>
+<body> <p><a href="userinfo.html">userInfo</a></p>
+    <p><a href="longestWord.html">longest word</a></p>
+    <p><a href="sort.html">Sorting</a></p>
+    <p><a href="math.html">Calculator</a></p>
+    <h1>Welcome!</h1>
+
+    <div id="message" class="message"></div>
+    <script>
+        // Validation 
+        function validateName(name) {
+            return /^[a-zA-Z]+$/.test(name); }
+
+        function validatePhone(phone) {
+            return /^\d{8}$/.test(phone);  }
+
+        function validateMobile(mobile) {
+            return /^(010|011|012)\d{8}$/.test(mobile); }
+
+        function validateEmail(email) {
+            const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+            return emailRegex.test(email);  }
+
+        function validateColor(color) {
+            return ['red', 'green', 'blue'].includes(color.toLowerCase());  }
+
+        // Function to get user input and validate it
+        function getUserInfo() {
+            let name = prompt("Enter your name:");
+            while (!validateName(name)) {
+                alert("Invalid (only letters allowed)");
+                name = prompt("Enter your name:");}
+
+            let phone = prompt("Enter phone number:");
+            while (!validatePhone(phone)) {
+                alert("Invalid! (8 digits only).");
+                phone = prompt("Enter phone number:"); }
+
+            let mobile = prompt("Enter mobile number:");
+            while (!validateMobile(mobile)) {
+                alert("Invalid! (start with 010,011,012 and 11 digits)");
+                mobile = prompt("Enter mobile number:");  }
+
+            let email = prompt("Enter email:");
+            while (!validateEmail(email)) {
+                alert("Invalid! (enter a valid email format).");
+                email = prompt("Enter email:"); }
+
+            let colorChoice = prompt("Choose color(red, green, blue) for your page details:");
+            while (!validateColor(colorChoice)) {
+                alert("Invalid color choice! Please choose red, green, or blue.");
+                colorChoice = prompt("Choose color(red, green, blue) for your page details:"); }
+            return { name, phone, mobile, email, colorChoice };
+        }
+
+        // display
+        function displayWelcomeMessage() {
+            const { name, phone, mobile, email, colorChoice } = getUserInfo();
+            const message = `
+                <p style="color: ${colorChoice.toLowerCase()}">Welcome <span class="data">${name}</span>!</p>
+                <p style="color: ${colorChoice.toLowerCase()}">Your phone number is: <span class="data">${phone}</span></p>
+                <p style="color: ${colorChoice.toLowerCase()}">Your mobile number is: <span class="data">${mobile}</span></p>
+                <p style="color: ${colorChoice.toLowerCase()}">Your email is: <span class="data">${email}</span></p>
+            `;   
+            document.getElementById('message').innerHTML = message;
+        }
+
+        displayWelcomeMessage();
+
+    </script>
+</body>
+</html>

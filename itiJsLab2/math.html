@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <p><a href="userinfo.html">userInfo</a></p>
+    <p><a href="longestWord.html">longest word</a></p>
+    <p><a href="sort.html">Sorting</a></p>
+    <p><a href="math.html">Calculator</a></p>
+    <script>
+        let currentStep = 0; // track the current question
+        window.onload = function() { askNextQuestion(); }
+
+        function askNextQuestion() {
+            switch (currentStep) {
+                case 0:
+                    let radius;
+                    do {
+                        radius = parseFloat(prompt("Enter radius to calculate cirlce area:"));
+                        if (isNaN(radius) || radius <= 0) {
+                            alert("invalid! (enter positive radius)"); }
+                    } while (isNaN(radius) || radius <= 0);
+                    
+                    const area = Math.PI * Math.pow(radius, 2);
+                    alert("The area of the circle is: " + area.toFixed(2));
+                    currentStep++;
+                    askNextQuestion();
+                    break;
+
+                case 1:
+                    let number;
+                    do {
+                        number = parseFloat(prompt("Enter number to calculate square root:"));
+                        if (isNaN(number) || number < 0) {
+                            alert("invalid! (enter non-negative number)"); }
+                    } while (isNaN(number) || number < 0);
+                    const squareRoot = Math.sqrt(number);
+                    alert("The square root of " + number + " is: " + squareRoot.toFixed(2));
+                    currentStep++;
+                    askNextQuestion(); 
+                    break;
+
+                case 2:
+                    let angle;
+                    do {
+                        angle = parseFloat(prompt("Enter an angle (in degrees) to calculate cosine:"));
+                        if (isNaN(angle)) {
+                            alert("please enter a valid angle."); }
+                    } while (isNaN(angle));
+                    const radians = angle * (Math.PI / 180);
+                    const cosValue = Math.cos(radians);
+                    alert("The cosine of " + angle + " degrees is: " + cosValue.toFixed(2));
+                    currentStep++;
+                    break;
+
+            }
+        }
+    </script>
+</body>
+</html>
