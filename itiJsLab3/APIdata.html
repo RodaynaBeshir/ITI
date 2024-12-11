@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif; margin: 0; display: flex; justify-content: center;
+      align-items: center; height: 100vh; background-color: #f7f7f7;}
+    .wrapper {
+      display: flex; flex-direction: column; align-items: center; width: 100%;
+      max-width: 600px; background: white; padding: 20px;
+      border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);}
+    .container {
+      width: 100%; text-align: center; margin-bottom: 20px; }
+    table {
+      width: 100%;  border-collapse: collapse;  margin-top: 20px;  }
+    table, th, td {
+      border: 1px solid #ccc; }
+    th, td {
+      padding: 10px;  text-align: left;  }
+    button {
+      padding: 5px 10px; margin: 5px; border: none; border-radius: 4px;  cursor: pointer; }
+    .fetch-button {
+      background-color: #007bff; color: white; }
+    .get-button {
+      background-color: #28a745;  color: white; }
+    .table-wrapper {
+      max-height: 400px; overflow-y: auto; width: 100%; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <h1>Table of API Data</h1>
+      <div>
+        <button id="fetchDataButton" class="fetch-button">Fetch Data</button>
+        <input type="number" id="dataIdInput" placeholder="Enter ID">
+        <button id="getByIdButton" class="get-button">Get Data by ID</button>
+      </div> </div>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+        <tr> <th>ID</th>
+            <th>Title</th>
+          </tr> </thead>
+        <tbody id="dataTable">
+        </tbody>
+      </table>
+    </div></div>
+
+  <script>
+    const apiUrl = 'https://jsonplaceholder.typicode.com/todos';
+    document.getElementById('fetchDataButton').addEventListener('click', async () => {
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        const tableBody = document.getElementById('dataTable');
+        tableBody.innerHTML = ''; // Clear existing data
+
+        data.forEach(item => {
+          const row = document.createElement('tr');
+          row.innerHTML = `<td>${item.id}</td><td>${item.title}</td>`;
+          tableBody.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Error fetching data:', error);} });
+
+    // Fetch and display data by ID
+    document.getElementById('getByIdButton').addEventListener('click', async () => {
+      const id = document.getElementById('dataIdInput').value.trim();
+      if (!id) {
+        alert('Please enter a valid ID.');
+        return; }
+      try {
+        const response = await fetch(`${apiUrl}/${id}`);
+        if (!response.ok) {
+          alert('No data found for the given ID.');
+          return; }
+
+        const item = await response.json();
+        const tableBody = document.getElementById('dataTable');
+        tableBody.innerHTML = ''; 
+
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${item.id}</td><td>${item.title}</td>`;
+        tableBody.appendChild(row);
+      } catch (error) {
+        console.error('Error fetching data by ID:', error);} });
+  </script>
+</body>
+</html>
