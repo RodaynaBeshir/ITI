@@ -1,1 +1,31 @@
+<?php
+
+// Constant
+define("iti", "https://iti.gov.eg");
+
+// show details
+echo "Server Name: " . $_SERVER['SERVER_NAME'] . "<br>";
+echo "Server Address: " . $_SERVER['SERVER_ADDR'] . "<br>";
+echo "Server Port: " . $_SERVER['SERVER_PORT'] . "<br>";
+echo "Filename: " . $_SERVER['SCRIPT_FILENAME'] . "<br>";
+echo "Path: " . $_SERVER['PHP_SELF'] . "<br>";
+
+// brother age 10
+echo "<h2>Brother</h2>";
+$age = 10;
+switch (true) {
+    case ($age < 5):
+        echo "Stay at home.";
+        break;
+    case ($age == 5):
+        echo "Go to Kindergarten.";
+        break;
+    case ($age >= 6 && $age <= 12):
+        $grade = $age - 6; 
+        echo "Go to grade: $grade";
+        break;
+    default:
+        echo "Age not handled.";
+}
+?>
 
