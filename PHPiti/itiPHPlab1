@@ -1,5 +1,8 @@
 <?php
 
+// php info
+phpinfo();
+
 // Constant
 define("iti", "https://iti.gov.eg");
 
